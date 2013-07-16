@@ -33,6 +33,24 @@ POST /user
 < Content-Type: application/json
 { "status": "created", "url": "/user/mmarshall" }
 
+Update a user profile
+PUT /user/{id}
+> Content-Type: application/json
+{
+    "edu_level": "bachelors",
+    "edu_institution": "MIT"
+}
+< 201
+< Content_type: application/json
+{
+    "status": "updated",
+    "url": "/user/mmarshall",
+    "fields": [
+        "edu_level",
+        "edu_institution"
+    ]
+}
+
 -- Payment Resources --
 This resource allows you to submit payment information to process your *shopping cart* items
 POST /payment
