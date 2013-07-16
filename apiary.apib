@@ -6,11 +6,11 @@ Welcome to the our sample API documentation. All comments can be written in (sup
 ---
 
 --
-User Resources
-The following is a section of resources related to the user domain
+User
+Operations related to managing users and profiles
 --
-Get user by user name or ID
-GET /user/{id}
+Get user by user name
+GET /user/{username}
 < 200
 < Content-Type: application/json
 {   
@@ -31,10 +31,10 @@ POST /user
 { "username":"mmarshall", "password": "jellyfish" }
 < 201
 < Content-Type: application/json
-{ "status": "created", "url": "/user/mmarshall" }
+{ "status": "created", "url": "/v1/user/mmarshall" }
 
 Update a user profile
-PUT /user/{id}
+PUT /user/{username}
 > Content-Type: application/json
 {
     "edu_level": "bachelors",
@@ -44,16 +44,27 @@ PUT /user/{id}
 < Content_type: application/json
 {
     "status": "updated",
-    "url": "/user/mmarshall",
+    "url": "/v1/user/mmarshall",
     "fields": [
         "edu_level",
         "edu_institution"
     ]
 }
 
--- Payment Resources --
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
-< 200
-{ "receipt": "/payment/receipt/1" }
+--
+Group
+Operations related to managing groups and group memberships
+--
+Create a new group
+POST /group
+{
+    "realm": "nutraspace.com",
+    "name": "Dietitians",
+    "description": "A place for dietitians to congregate",
+    "admins": [
+        "mmarshall",
+        "akannan"
+    ]
+}
+< 201
+{ "status": "created", "url": "/v1/group/032342-2432-4234-908" }
